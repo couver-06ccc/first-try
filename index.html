@@ -54,6 +54,7 @@
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         #prev-btn { background: #f5f5f5; color: #666; }
         #prev-btn:hover:not(:disabled) { background: #e8e8e8; }
+        .cancel-btn:hover { background: #ee5253; } 
         .question-progress { font-size: 1rem; color: #888; }
 
         .result-container { text-align: center; padding: 40px 20px; }
@@ -91,6 +92,7 @@
                 <div class="options" id="options"></div>
                 <div class="navigation-buttons">
                     <button class="nav-btn" id="prev-btn" onclick="prevQuestion()" disabled>← 上一题</button>
+                    <button class="nav-btn cancel-btn" id="cancel-btn" onclick="cancelTest()">取消测试</button>
                     <span class="question-progress" id="question-progress">1 / 50</span>
                 </div>
             </div>
@@ -477,6 +479,16 @@
             if (currentQuestion > 0) {
                 currentQuestion--;
                 showQuestion();
+            }
+        }
+
+         function cancelTest() {  // 新增函数
+            if (confirm("确定要取消测试吗？当前进度将不会保存。")) {
+                 currentQuestion = 0;
+                 answers = [];
+                 document.getElementById('test-page').classList.add('hidden');
+                 document.getElementById('start-page').classList.remove('hidden');
+                 document.getElementById('progress-fill').style.width = '0%';
             }
         }
 
