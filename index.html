@@ -282,51 +282,313 @@
     <script>
         // 测试问题数据
         const questions = [
-            {
-                question: "周末你更喜欢做什么？",
-                options: [
-                    { text: "在家安静地看书或听音乐", type: "introvert" },
-                    { text: "和朋友们一起聚会逛街", type: "extrovert" },
-                    { text: "去公园散步或郊外踏青", type: "nature" },
-                    { text: "尝试新的美食或学习新技能", type: "adventure" }
-                ]
-            },
-            {
-                question: "你希望给别人留下什么印象？",
-                options: [
-                    { text: "温柔体贴，善解人意", type: "gentle" },
-                    { text: "热情开朗，充满活力", type: "energetic" },
-                    { text: "优雅高贵，气质非凡", type: "elegant" },
-                    { text: "神秘深邃，与众不同", type: "mysterious" }
-                ]
-            },
-            {
-                question: "遇到困难时，你通常会？",
-                options: [
-                    { text: "独自冷静思考解决", type: "independent" },
-                    { text: "寻求朋友家人的帮助", type: "supportive" },
-                    { text: "保持乐观，相信一切都会好", type: "optimistic" },
-                    { text: "分析问题，制定详细计划", type: "analytical" }
-                ]
-            },
-            {
-                question: "你最喜欢的季节是？",
-                options: [
-                    { text: "春天 - 万物复苏", type: "fresh" },
-                    { text: "夏天 - 热情奔放", type: "warm" },
-                    { text: "秋天 - 沉静优雅", type: "serene" },
-                    { text: "冬天 - 纯洁静谧", type: "pure" }
-                ]
-            },
-            {
-                question: "你更看重什么品质？",
-                options: [
-                    { text: "真诚与善良", type: "sincere" },
-                    { text: "勇气与坚持", type: "brave" },
-                    { text: "智慧与才华", type: "wise" },
-                    { text: "自由与独立", type: "free" }
-                ]
-            }
+            
+                { question: "周末你更喜欢做什么？", options: [
+                { text: "在家安静地看书或听音乐", type: "introvert" },
+                { text: "和朋友们一起聚会逛街", type: "extrovert" },
+                { text: "去公园散步或郊外踏青", type: "nature" },
+                { text: "尝试新的美食或学习新技能", type: "adventure" }
+            ]},
+            { question: "你希望给别人留下什么印象？", options: [
+                { text: "温柔体贴，善解人意", type: "gentle" },
+                { text: "热情开朗，充满活力", type: "energetic" },
+                { text: "优雅高贵，气质非凡", type: "elegant" },
+                { text: "神秘深邃，与众不同", type: "mysterious" }
+            ]},
+            { question: "遇到困难时，你通常会？", options: [
+                { text: "独自冷静思考解决", type: "independent" },
+                { text: "寻求朋友家人的帮助", type: "supportive" },
+                { text: "保持乐观，相信一切都会好", type: "optimistic" },
+                { text: "分析问题，制定详细计划", type: "analytical" }
+            ]},
+            { question: "你最喜欢的季节是？", options: [
+                { text: "春天 - 万物复苏", type: "fresh" },
+                { text: "夏天 - 热情奔放", type: "warm" },
+                { text: "秋天 - 沉静优雅", type: "serene" },
+                { text: "冬天 - 纯洁静谧", type: "pure" }
+            ]},
+            { question: "你更看重什么品质？", options: [
+                { text: "真诚与善良", type: "sincere" },
+                { text: "勇气与坚持", type: "brave" },
+                { text: "智慧与才华", type: "wise" },
+                { text: "自由与独立", type: "free" }
+            ]},
+            { question: "朋友聚会时，你通常是？", options: [
+                { text: "倾听者，安静地听大家聊天", type: "introvert" },
+                { text: "活跃分子，带动气氛", type: "extrovert" },
+                { text: "组织者，安排活动", type: "analytical" },
+                { text: "观察者，默默关注大家", type: "mysterious" }
+            ]},
+            { question: "你更喜欢哪种颜色？", options: [
+                { text: "温暖的红色或橙色", type: "warm" },
+                { text: "清新的绿色或蓝色", type: "fresh" },
+                { text: "优雅的紫色或金色", type: "elegant" },
+                { text: "纯洁的白色或粉色", type: "pure" }
+            ]},
+            { question: "你做决定时更倾向于？", options: [
+                { text: "凭感觉和直觉", type: "gentle" },
+                { text: "理性分析利弊", type: "analytical" },
+                { text: "询问他人意见", type: "supportive" },
+                { text: "跟随内心的声音", type: "free" }
+            ]},
+            { question: "你喜欢的音乐类型是？", options: [
+                { text: "舒缓的轻音乐", type: "serene" },
+                { text: "动感的流行音乐", type: "energetic" },
+                { text: "优雅的古典音乐", type: "elegant" },
+                { text: "神秘的电子音乐", type: "mysterious" }
+            ]},
+            { question: "你理想中的度假方式是？", options: [
+                { text: "海边悠闲度假", type: "serene" },
+                { text: "城市观光购物", type: "extrovert" },
+                { text: "登山徒步探险", type: "adventure" },
+                { text: "乡村田园体验", type: "nature" }
+            ]},
+            { question: "当你感到压力大时，会？", options: [
+                { text: "独自冥想放松", type: "introvert" },
+                { text: "找朋友倾诉", type: "supportive" },
+                { text: "运动释放压力", type: "energetic" },
+                { text: "做喜欢的事转移注意力", type: "free" }
+            ]},
+            { question: "你更喜欢哪种花？", options: [
+                { text: "鲜艳的玫瑰", type: "warm" },
+                { text: "阳光的向日葵", type: "energetic" },
+                { text: "高雅的兰花", type: "elegant" },
+                { text: "清新的薰衣草", type: "serene" }
+            ]},
+            { question: "你学习新知识的方式是？", options: [
+                { text: "自主阅读研究", type: "independent" },
+                { text: "参加培训课程", type: "supportive" },
+                { text: "实践中学习", type: "adventure" },
+                { text: "与他人交流讨论", type: "extrovert" }
+            ]},
+            { question: "你认为自己更像？", options: [
+                { text: "温暖的太阳", type: "warm" },
+                { text: "宁静的月亮", type: "serene" },
+                { text: "璀璨的星星", type: "elegant" },
+                { text: "神秘的夜空", type: "mysterious" }
+            ]},
+            { question: "你更喜欢哪种天气？", options: [
+                { text: "阳光明媚", type: "warm" },
+                { text: "细雨绵绵", type: "serene" },
+                { text: "微风轻拂", type: "fresh" },
+                { text: "白雪皑皑", type: "pure" }
+            ]},
+            { question: "朋友遇到困难时，你会？", options: [
+                { text: "默默陪伴在身边", type: "gentle" },
+                { text: "主动提供帮助", type: "supportive" },
+                { text: "帮他分析问题", type: "analytical" },
+                { text: "鼓励他勇敢面对", type: "brave" }
+            ]},
+            { question: "你更喜欢哪种艺术形式？", options: [
+                { text: "绘画与书法", type: "elegant" },
+                { text: "音乐与舞蹈", type: "energetic" },
+                { text: "文学与诗歌", type: "mysterious" },
+                { text: "摄影与设计", type: "fresh" }
+            ]},
+            { question: "你处理冲突的方式是？", options: [
+                { text: "避免冲突，保持和谐", type: "gentle" },
+                { text: "直接沟通，解决问题", type: "sincere" },
+                { text: "冷静分析，寻找解决方案", type: "analytical" },
+                { text: "保持中立，调和双方", type: "supportive" }
+            ]},
+            { question: "你喜欢的电影类型是？", options: [
+                { text: "温馨感人的剧情片", type: "gentle" },
+                { text: "刺激紧张的动作片", type: "adventure" },
+                { text: "富有哲理的文艺片", type: "mysterious" },
+                { text: "轻松愉快的喜剧片", type: "optimistic" }
+            ]},
+            { question: "你更喜欢哪种宠物？", options: [
+                { text: "忠诚的狗", type: "supportive" },
+                { text: "优雅的猫", type: "elegant" },
+                { text: "自由的鸟", type: "free" },
+                { text: "可爱的兔子", type: "gentle" }
+            ]},
+            { question: "你周末通常几点起床？", options: [
+                { text: "早起锻炼", type: "energetic" },
+                { text: "睡到自然醒", type: "serene" },
+                { text: "有计划地起床", type: "analytical" },
+                { text: "根据心情决定", type: "free" }
+            ]},
+            { question: "你更喜欢哪种食物？", options: [
+                { text: "辛辣刺激的川菜", type: "warm" },
+                { text: "清淡养生的粤菜", type: "fresh" },
+                { text: "精致优雅的西餐", type: "elegant" },
+                { text: "朴实无华的家常菜", type: "gentle" }
+            ]},
+            { question: "你如何面对失败？", options: [
+                { text: "总结经验，重新开始", type: "brave" },
+                { text: "自我反思，调整心态", type: "optimistic" },
+                { text: "寻求帮助，共同解决", type: "supportive" },
+                { text: "暂时放下，转移注意力", type: "free" }
+            ]},
+            { question: "你更喜欢哪种旅行方式？", options: [
+                { text: "独自旅行", type: "independent" },
+                { text: "与朋友结伴", type: "extrovert" },
+                { text: "家庭出游", type: "supportive" },
+                { text: "随心而行", type: "adventure" }
+            ]},
+            { question: "你认为幸福是什么？", options: [
+                { text: "与家人朋友在一起", type: "supportive" },
+                { text: "实现自己的梦想", type: "brave" },
+                { text: "内心的平静与满足", type: "serene" },
+                { text: "探索未知的世界", type: "adventure" }
+            ]},
+            { question: "你更喜欢哪种运动？", options: [
+                { text: "跑步健身", type: "energetic" },
+                { text: "瑜伽冥想", type: "serene" },
+                { text: "球类运动", type: "extrovert" },
+                { text: "登山远足", type: "nature" }
+            ]},
+            { question: "你做事情的风格是？", options: [
+                { text: "有条不紊，按计划进行", type: "analytical" },
+                { text: "灵活应变，随机应变", type: "free" },
+                { text: "注重细节，追求完美", type: "elegant" },
+                { text: "雷厉风行，快速行动", type: "energetic" }
+            ]},
+            { question: "你更喜欢哪种书籍？", options: [
+                { text: "文学小说", type: "mysterious" },
+                { text: "科普读物", type: "wise" },
+                { text: "励志书籍", type: "brave" },
+                { text: "生活美学", type: "elegant" }
+            ]},
+            { question: "你如何表达爱意？", options: [
+                { text: "用言语直接表达", type: "sincere" },
+                { text: "用行动默默付出", type: "gentle" },
+                { text: "送礼物表达心意", type: "warm" },
+                { text: "陪伴是最长情的告白", type: "supportive" }
+            ]},
+            { question: "你更喜欢哪种工作环境？", options: [
+                { text: "安静独立的空间", type: "introvert" },
+                { text: "热闹协作的团队", type: "extrovert" },
+                { text: "创意开放的氛围", type: "adventure" },
+                { text: "优雅舒适的环境", type: "elegant" }
+            ]},
+            { question: "你对未来的态度是？", options: [
+                { text: "充满期待与希望", type: "optimistic" },
+                { text: "保持谨慎与理性", type: "analytical" },
+                { text: "顺其自然，随遇而安", type: "serene" },
+                { text: "勇于挑战，敢于冒险", type: "brave" }
+            ]},
+            { question: "你更喜欢哪种节日？", options: [
+                { text: "热闹的春节", type: "extrovert" },
+                { text: "浪漫的情人节", type: "warm" },
+                { text: "团圆的中秋节", type: "supportive" },
+                { text: "宁静的清明节", type: "serene" }
+            ]},
+            { question: "你解决问题的方式是？", options: [
+                { text: "循序渐进，逐步解决", type: "analytical" },
+                { text: "抓住重点，一击即中", type: "wise" },
+                { text: "寻求帮助，集思广益", type: "supportive" },
+                { text: "暂时搁置，等待灵感", type: "free" }
+            ]},
+            { question: "你更喜欢哪种交通工具？", options: [
+                { text: "快速的飞机", type: "energetic" },
+                { text: "悠闲的火车", type: "serene" },
+                { text: "自由的自驾", type: "free" },
+                { text: "环保的骑行", type: "nature" }
+            ]},
+            { question: "你如何看待时间？", options: [
+                { text: "时间就是金钱，要高效利用", type: "analytical" },
+                { text: "时间是礼物，要珍惜当下", type: "sincere" },
+                { text: "时间是长河，顺其自然", type: "serene" },
+                { text: "时间是机会，要勇于尝试", type: "adventure" }
+            ]},
+            { question: "你更喜欢哪种植物？", options: [
+                { text: "茂盛的大树", type: "supportive" },
+                { text: "娇嫩的花朵", type: "gentle" },
+                { text: "翠绿的小草", type: "nature" },
+                { text: "挺拔的竹子", type: "brave" }
+            ]},
+            { question: "你与人交往的原则是？", options: [
+                { text: "真诚相待，真心交友", type: "sincere" },
+                { text: "保持距离，尊重隐私", type: "independent" },
+                { text: "乐于助人，广结善缘", type: "supportive" },
+                { text: "志同道合，宁缺毋滥", type: "wise" }
+            ]},
+            { question: "你更喜欢哪种建筑风格？", options: [
+                { text: "古典优雅的欧式", type: "elegant" },
+                { text: "简约现代的风格", type: "fresh" },
+                { text: "自然质朴的田园", type: "nature" },
+                { text: "神秘古老的中式", type: "mysterious" }
+            ]},
+            { question: "你处理情绪的方式是？", options: [
+                { text: "自我调节，冷静处理", type: "serene" },
+                { text: "倾诉宣泄，释放压力", type: "supportive" },
+                { text: "转移注意力，做喜欢的事", type: "free" },
+                { text: "分析原因，解决问题", type: "analytical" }
+            ]},
+            { question: "你更喜欢哪种饮品？", options: [
+                { text: "香浓的咖啡", type: "warm" },
+                { text: "清香的茶", type: "serene" },
+                { text: "清爽的果汁", type: "fresh" },
+                { text: "纯净的水", type: "pure" }
+            ]},
+            { question: "你对美的看法是？", options: [
+                { text: "外在的华丽", type: "elegant" },
+                { text: "内在的善良", type: "sincere" },
+                { text: "自然的本真", type: "nature" },
+                { text: "独特的个性", type: "free" }
+            ]},
+            { question: "你更喜欢哪种学习方式？", options: [
+                { text: "自学成才", type: "independent" },
+                { text: "名师指导", type: "wise" },
+                { text: "同学互助", type: "supportive" },
+                { text: "实践探索", type: "adventure" }
+            ]},
+            { question: "你如何面对批评？", options: [
+                { text: "虚心接受，认真改进", type: "sincere" },
+                { text: "冷静分析，判断对错", type: "analytical" },
+                { text: "保持自信，不为所动", type: "brave" },
+                { text: "反思自我，完善自己", type: "wise" }
+            ]},
+            { question: "你更喜欢哪种夜空？", options: [
+                { text: "繁星点点", type: "elegant" },
+                { text: "明月高照", type: "serene" },
+                { text: "流星划过", type: "mysterious" },
+                { text: "银河璀璨", type: "warm" }
+            ]},
+            { question: "你做决定的速度是？", options: [
+                { text: "快速果断", type: "energetic" },
+                { text: "深思熟虑", type: "analytical" },
+                { text: "犹豫不决", type: "gentle" },
+                { text: "随机决定", type: "free" }
+            ]},
+            { question: "你更喜欢哪种购物方式？", options: [
+                { text: "实体店购物", type: "extrovert" },
+                { text: "网上购物", type: "introvert" },
+                { text: "精心挑选", type: "elegant" },
+                { text: "随心购买", type: "free" }
+            ]},
+            { question: "你对友谊的看法是？", options: [
+                { text: "人生得一知己足矣", type: "wise" },
+                { text: "朋友多了路好走", type: "extrovert" },
+                { text: "患难见真情", type: "supportive" },
+                { text: "君子之交淡如水", type: "serene" }
+            ]},
+            { question: "你更喜欢哪种天气现象？", options: [
+                { text: "彩虹", type: "warm" },
+                { text: "雪花", type: "pure" },
+                { text: "极光", type: "mysterious" },
+                { text: "晚霞", type: "elegant" }
+            ]},
+            { question: "你如何规划时间？", options: [
+                { text: "详细的时间表", type: "analytical" },
+                { text: "大致的计划", type: "free" },
+                { text: "随遇而安", type: "serene" },
+                { text: "优先重要的事", type: "wise" }
+            ]},
+            { question: "你更喜欢哪种水果？", options: [
+                { text: "甜美的草莓", type: "warm" },
+                { text: "清爽的西瓜", type: "fresh" },
+                { text: "优雅的葡萄", type: "elegant" },
+                { text: "纯净的梨", type: "pure" }
+            ]},
+            { question: "你对成功的定义是？", options: [
+                { text: "事业有成", type: "brave" },
+                { text: "家庭幸福", type: "supportive" },
+                { text: "内心富足", type: "serene" },
+                { text: "自由快乐", type: "free" }
+            ]}
         ];
 
         // 花类型数据
