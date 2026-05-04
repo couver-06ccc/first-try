@@ -6,13 +6,76 @@
     <title>🌸 花之性格测试 - Flower Personality Test</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 50%, #e3f2fd 100%); min-height: 100vh; }
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-        .header { text-align: center; padding: 40px 20px; }
+        body { font-family: 'Microsoft YaHei', 'PingFang SC', sans-serif; background: linear-gradient(135deg, #fce4ec 0%, #e8eaf6 50%, #e3f2fd 100%); min-height: 100vh; overflow-x: hidden; position: relative; }
+        
+        /* 背景飘落花瓣容器 */
+        #petal-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .falling-petal {
+            position: absolute;
+            top: -50px;
+            font-size: 1.5rem;
+            opacity: 0.8;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh) rotate(360deg); }
+        }
+
+        .container { max-width: 800px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        
+        /* 首页玻璃拟态卡片 */
+        .header { 
+            text-align: center; 
+            padding: 50px 30px; 
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            margin-top: 20px;
+        }
         .header h1 { font-size: 2.5rem; color: #5d4037; margin-bottom: 10px; }
         .header p { font-size: 1.1rem; color: #6d4c41; }
-        .counter-badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 20px; border-radius: 25px; font-size: 1rem; margin-top: 15px; }
         
+        .counter-badge { display: inline-block; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 8px 20px; border-radius: 25px; font-size: 1rem; margin-top: 15px; box-shadow: 0 4px 15px rgba(118, 75, 162, 0.3); }
+
+        /* 新增：特性预览区域 */
+        .features-preview {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+        .feature-item {
+            background: rgba(255, 255, 255, 0.8);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            color: #5d4037;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        /* 新增：每日花语 */
+        .daily-quote {
+            font-style: italic;
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 20px;
+            min-height: 1.5em;
+            padding: 0 10px;
+        }
+
         /* 进度条样式 - 显示题目数 */
         .progress-bar {
             width: 100%;
@@ -54,6 +117,7 @@
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         #prev-btn { background: #f5f5f5; color: #666; }
         #prev-btn:hover:not(:disabled) { background: #e8e8e8; }
+        .cancel-btn { background: #ff6b6b; color: white; }
         .cancel-btn:hover { background: #ee5253; } 
         .question-progress { font-size: 1rem; color: #888; }
 
@@ -62,13 +126,15 @@
         @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
         .flower-name { font-size: 2.5rem; color: #5d4037; margin-bottom: 15px; }
         .flower-title { font-size: 1.3rem; color: #ff9800; margin-bottom: 30px; }
-        .flower-description { background: white; border-radius: 15px; padding: 25px; text-align: left; line-height: 1.8; color: #555; }
+        .flower-description { background: white; border-radius: 15px; padding: 25px; text-align: left; line-height: 1.8; color: #555; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
         .flower-traits { margin-top: 25px; }
         .flower-traits h4 { color: #e91e63; margin-bottom: 15px; font-size: 1.2rem; }
-        .trait-tags { display: flex; flex-wrap: wrap; gap: 12px; }
+        .trait-tags { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
         .trait-tag { background: linear-gradient(135deg, #ffc107, #ff9800); color: white; padding: 10px 24px; border-radius: 25px; font-size: 1rem; }
         
-        .restart-btn { margin-top: 35px; padding: 15px 50px; background: linear-gradient(135deg, #e91e63, #ff9800); color: white; border: none; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; }
+        .restart-btn { margin-top: 35px; padding: 15px 50px; background: linear-gradient(135deg, #e91e63, #ff9800); color: white; border: none; border-radius: 30px; font-size: 1.1rem; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 5px 15px rgba(233, 30, 99, 0.3); }
+        .restart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(233, 30, 99, 0.4); }
+        
         .hidden { display: none; }
         .loading { text-align: center; padding: 50px; }
         .spinner { width: 40px; height: 40px; border: 4px solid #f3f3f3; border-top: 4px solid #ff9800; border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 20px; }
@@ -76,11 +142,25 @@
     </style>
 </head>
 <body>
+    <!-- 背景花瓣容器 -->
+    <div id="petal-container"></div>
+
     <div class="container">
         <div id="start-page" class="header">
             <h1>🌸 花之性格测试</h1>
             <p>探索你内心深处的花语，发现属于你的花之灵魂</p>
+            
+            <!-- 新增：特性预览 -->
+            <div class="features-preview">
+                <div class="feature-item">🔮 深度解析</div>
+                <div class="feature-item">🌿 专属花语</div>
+            </div>
+
             <span class="counter-badge" id="test-counter">🌸 已有 0 人参与测试</span>
+            
+            <!-- 新增：每日花语 -->
+            <p class="daily-quote" id="daily-quote">“每一朵花都有盛开的理由。”</p>
+
             <button class="restart-btn" style="margin-top: 30px;" onclick="startTest()">开始测试</button>
         </div>
 
@@ -426,7 +506,42 @@
             { name: "荷花", icon: "🪷", title: "清莲雅士", description: "你像一朵荷花，出淤泥而不染。你内心纯净，追求真善美，不随波逐流。你有自己的精神追求，注重内心的修养。你的高洁品格让人敬仰。", traits: ["纯洁", "高雅", "正直", "脱俗", "清逸", "淡泊"] }
         ];
 
+        // 每日花语录
+        const quotes = [
+            "“每一朵花都有盛开的理由。”",
+            "“心若向阳，无畏悲伤。”",
+            "“愿你如夏花般绚烂。”",
+            "“温柔是人间宝藏。”",
+            "“生活原本沉闷，但跑起来就有风。”",
+            "“保持热爱，奔赴山海。”"
+        ];
+
         let currentQuestion = 0, answers = [];
+
+        // 新增：生成背景花瓣
+        function generatePetals() {
+            const container = document.getElementById('petal-container');
+            const petalCount = 15; // 花瓣数量
+            const petals = ['🌸', '🌹', '🍃', '🌺'];
+            
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.classList.add('falling-petal');
+                petal.textContent = petals[Math.floor(Math.random() * petals.length)];
+                petal.style.left = Math.random() * 100 + 'vw';
+                petal.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5-10s
+                petal.style.animationDelay = Math.random() * 5 + 's';
+                petal.style.fontSize = (Math.random() * 1 + 1) + 'rem';
+                container.appendChild(petal);
+            }
+        }
+
+        // 新增：加载每日花语
+        function loadDailyQuote() {
+            const quoteEl = document.getElementById('daily-quote');
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteEl.textContent = randomQuote;
+        }
 
         function loadCounter() {
             const count = localStorage.getItem('flowerTestCount') || 0;
@@ -482,7 +597,7 @@
             }
         }
 
-         function cancelTest() {  // 新增函数
+         function cancelTest() {  
             if (confirm("确定要取消测试吗？当前进度将不会保存。")) {
                  currentQuestion = 0;
                  answers = [];
@@ -527,7 +642,11 @@
             loadCounter();
         }
 
-        window.onload = loadCounter;
+        window.onload = function() {
+            loadCounter();
+            generatePetals();
+            loadDailyQuote();
+        };
     </script>
 </body>
 </html>
