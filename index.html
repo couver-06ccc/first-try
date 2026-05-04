@@ -54,6 +54,7 @@
         .nav-btn:disabled { opacity: 0.5; cursor: not-allowed; }
         #prev-btn { background: #f5f5f5; color: #666; }
         #prev-btn:hover:not(:disabled) { background: #e8e8e8; }
+        .cancel-btn { background: #ff6b6b; color: white; }
         .cancel-btn:hover { background: #ee5253; } 
         .question-progress { font-size: 1rem; color: #888; }
 
@@ -482,7 +483,7 @@
             }
         }
 
-         function cancelTest() {  // 新增函数
+         function cancelTest() {  
             if (confirm("确定要取消测试吗？当前进度将不会保存。")) {
                  currentQuestion = 0;
                  answers = [];
